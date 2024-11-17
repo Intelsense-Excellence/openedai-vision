@@ -585,3 +585,35 @@ You can also use the environment variable: `OPENEDAI_DEVICE_MAP="sequential"` to
 4. "My Nvidia GPU isn't detected when using docker.", using Nvidia CUDA with docker.
 - Linux: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
 - Windows: Use WSL2 with docker and nvidia drivers: https://docs.nvidia.com/cuda/wsl-user-guide/index.html
+
+```
+ python vision.py --model  Qwen/Qwen2-VL-72B-Instruct-AWQ
+```
+
+
+```
+curl http://172.188.26.93:5006/v1/chat/completions \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer $OPENAI_API_KEY" \
+-d '{
+"model": "gpt-4o",
+"messages": [
+{
+  "role": "user",
+  "content": [
+    {
+      "type": "text",
+      "text": "What'\''s in this image?"
+    },
+    {
+      "type": "image_url",
+      "image_url": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg"
+      }
+    }
+  ]
+}
+],
+"max_tokens": 300
+}'
+```
